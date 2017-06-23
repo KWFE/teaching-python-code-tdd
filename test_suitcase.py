@@ -23,6 +23,18 @@ class TestSuitecase(unittest.TestCase):
         self.assertEqual("2 things (20kg)", s.to_string())
 
 
+    def test_add_things_over_limit(self):
+        t1 = Thing("some name", 80)
+        t2 = Thing("some name", 21)
+
+        s = Suitecase(100)
+
+        s.add_thing(t1)
+        s.add_thing(t2)
+
+        self.assertEqual("1 thing (80kg)", s.to_string())
+
+
     def test_empty_suitecase(self):
         s = Suitecase(100)
         self.assertEqual("empty (0kg)", s.to_string())
@@ -37,6 +49,7 @@ class TestSuitecase(unittest.TestCase):
         s.add_thing(t2)
 
         self.assertEqual(t2, s.heaviest_thing())
+
 
     def test_heaviest_thing_empty(self):
         s = Suitecase(100)
