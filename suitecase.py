@@ -1,4 +1,5 @@
 from word_extractor import WordExtractor
+from weight_check import WeightCheck
 
 class Suitecase:
     def __init__(self, max_weight):
@@ -7,8 +8,20 @@ class Suitecase:
         self._things = []
 
 
+    def total_weight(self):
+        return self._total_weight
+
+
+    def get_weight(self):
+        return self._total_weight
+
+
+    def max_weight(self):
+        return self._max_weight
+
+
     def add_thing(self, thing):
-        if self._total_weight + thing.get_weight() > self._max_weight:
+        if WeightCheck.check_invalid_add(self, thing):
             return
 
         self._total_weight += thing.get_weight()
